@@ -8,8 +8,6 @@ import root.entity.Message;
 import root.entity.Statistic;
 import root.service.MessageService;
 
-import java.math.BigDecimal;
-
 @RestController
 public class MessageController {
 
@@ -19,10 +17,10 @@ public class MessageController {
         this.service = service;
     }
 
-    @RequestMapping(path = "/pay")
+    @RequestMapping("/pay")
     public Commission pay(@RequestBody Message message) {
         Message save = service.save(message);
-        return new Commission(save.getUuid(), save.getAmount().multiply(BigDecimal.valueOf(0.15)));
+        return new Commission(save);
     }
 
     @RequestMapping("/stat")

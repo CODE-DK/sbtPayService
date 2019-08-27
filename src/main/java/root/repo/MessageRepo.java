@@ -13,8 +13,8 @@ import java.util.UUID;
 @Repository
 public interface MessageRepo extends JpaRepository<Message, UUID> {
     @Query(nativeQuery = true, value = "select date, count(uuid) as count, sum(amount) as sumAmount, SUM(amount*0.15) AS sumCommission FROM message GROUP BY date")
-    List<DateStatistic> findDateCount();
+    List<DateStatistic> getDateStatistic();
 
     @Query(nativeQuery = true, value = "select point, count(uuid) as count, sum(amount) as sumAmount, SUM(amount*0.15) AS sumCommission FROM message GROUP BY point")
-    List<PointStatistic> findPointCount();
+    List<PointStatistic> getPointStatistic();
 }
